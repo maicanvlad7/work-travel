@@ -15,7 +15,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            //start of custom attr
             $table->string('name');
+            $table->string('role'); //defines the user's role, can either be Manager,Student or Admin -> also have middleware based on this
+            $table->string('address');
+            $table->date('dob');
+            $table->string('phone_nr');
+            //end of custom attr
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
