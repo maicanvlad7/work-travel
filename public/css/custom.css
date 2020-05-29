@@ -1,0 +1,15 @@
+body,html{
+    overflow-x: hidden;
+}
+
+.mg-center{
+    margin: 0 auto!important;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.checkerClass{
+    margin-bottom: 20vh;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@home')->name('welcome');
+
+Route::get('jobDetail/{id}','JobsController@getInfo')->name('getJobInfo');
+
+Route::get('/checker','PaymentsController@index')->name('checker');
+Route::post('/checker','PaymentsController@checker')->name('checkPayment');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
