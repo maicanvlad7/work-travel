@@ -13,3 +13,28 @@ body,html{
 .checkerClass{
     margin-bottom: 20vh;
 }
+
+.starHover{
+    transition-duration: 0.2s;
+}
+.starHover:hover{
+    color: yellow!important;
+}
+
+.mt-10v{
+    margin-top:10vh;
+}
+
+.mt-5v{
+    margin-top:5vh;
+}
+
+/* MENIUL DIN STANGA DASHBOARD*/
+.custom-menu{
+    color: red;
+}
+
+.mainUserDash{
+    min-height: 70vh;
+}
+

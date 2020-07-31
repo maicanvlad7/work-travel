@@ -92,7 +92,7 @@ where_togo_area_end  -->
                 <div class="col-lg-4 col-md-6">
                     <div class="single_place">
                         <div class="thumb">
-                            <img src="@if($jd->image_path){{$jd->image_path}}@else{{asset('img/noimage.png')}}@endif" alt="">
+                            <img src="@if(isset($jd->image_path)){{$jd->image_path}}@else{{asset('img/noimage.png')}}@endif" alt="">
                             <a href="#" class="prise">${{$jd->rate}}/ora</a>
                         </div>
                         <div class="place_info">

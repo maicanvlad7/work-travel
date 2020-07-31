@@ -16,12 +16,14 @@ class PaymentsController extends Controller
 
     public function checker(Request $request)
     {
-        if ( DB::table('payments')->where('token','=',$request->input('token'))
+        if ( DB::table('payments')
+            ->where('token','=',$request->input('token'))
             ->where('used','=','0')
             ->count() ) {
             return redirect('register');
         } else {
-            return Redirect::back()->withErrors('The token provided doesnt exist or was already used. Please try again!');
+            return Redirect::back()
+                ->withErrors('The token provided doesnt exist or was already used. Please try again!');
         }
     }
 }

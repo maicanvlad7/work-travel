@@ -21,8 +21,13 @@ Route::get('jobDetail/{id}','JobsController@getInfo')->name('getJobInfo');
 Route::get('/checker','PaymentsController@index')->name('checker');
 Route::post('/checker','PaymentsController@checker')->name('checkPayment');
 
-Auth::routes();
+Route::get('/apply/{uid}/{jid}','ApplicationsController@store')->name('user_apply');
 
+Route::get('/my-dashboard','UsersController@dashboard')->middleware(['auth'])->name('user_dashboard');
+
+Route::get('/simPdf','UsersController@showPdf')->name('show-pdf');
+
+Auth::routes();
 
 
 Route::group(['prefix' => 'admin'], function () {

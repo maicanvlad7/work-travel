@@ -21,14 +21,17 @@
                             @endif
                         </p>
                         <div class="single_destination">
-                            <h4>Facilitati</h4>
-                                <ul class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Facilitati</h4>
                                     @foreach($jobInfo->facilitiesName as $jifn)
-                                        <li class=""><span class="fa fa-star mr-3composer require tcg/voyager"></span>{{$jifn->name}}</li>
+                                        <ul class="form-control" style="margin-top:1vh;">
+                                            <li class=""><span class="fa fa-star mr-3composer require tcg/voyager starHover"></span>{{$jifn->name}}</li>
+                                        </ul>
                                     @endforeach
-                                </ul>
-
-                            <p></p>
+                                    <p></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="single_destination">
                             <h4>Day-02</h4>
@@ -41,11 +44,19 @@
                     </div>
 
                    @auth
+                        @if(!isset($jobInfo->canApply))
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <button class="btn-lg btn-danger">Aplica Acum</button>
+                                <button class="btn-lg btn-danger"><a style="color:white!important;" href="{{route('user_apply',['uid'=>Auth::id(),'jid'=>$jobInfo->id])}}">Aplica Acum</a></button>
+                                    @if ($errors->any())
+                                        <p class="text-danger">Ne pare rau, ati aplicat deja la alt job!</p>
+                                    @endif
+                                    @if (session('success'))
+                                        <p class="text-success mt-2">Ai aplicat cu succes! Un interviu va fi setat in curand!</p>
+                                    @endif
                             </div>
                         </div>
+                        @endif
                        @endauth
 
                 </div>
