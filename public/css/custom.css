@@ -38,3 +38,11 @@ body,html{
     min-height: 70vh;
 }
 
+.card{
+    transition-duration: 0.2s;
+}
+
+.card:hover{
+    transform: scale(1.02);
+}
+

@@ -18,16 +18,24 @@ class UsersController extends Controller
 
     public function dashboard(){
 
+        //daca este manager
         if(CheckRole::checkManager(Auth::user())){
             //incarcam pagina de manager
             $managerInfo = (object)[];
             $managerInfo->name = 'Codruta';
             return view('manager.dashboard', compact('managerInfo'));
-        }else {
-            //incarcam pagina de student si aplicatiile lui
-            $userApp = Application::where(['user_id' => Auth::id()])->get();
 
-            return view('user.dashboard', compact('userApp'));
+        }else {
+
+            //aplicatiile utilizatorului
+            //$userApp = Application::where(['user_id' => Auth::id()])->get();
+
+            $data = (object)[];
+            $data->nrAplicatii = Application::where([
+                'user_id' => Auth::id(),
+            ])->count();
+
+            return view('user.dashboard', compact('data'));
         }
         //incarcam dashboard diferit pentru fiecare rol de utilizator
 

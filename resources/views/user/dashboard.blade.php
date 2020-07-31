@@ -6,7 +6,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link {{Request::is('my-dashboard') ? 'active' : ''}}" href="#">
+                            <a class="nav-link" href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                 Contul Meu
                             </a>
@@ -45,14 +45,14 @@
                 </div>
             </nav>
             <!-- ZONA DIN DREAPTA-->
-            <div class="col-md-8 right-side">
+            <div class="col-md-9 right-side">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Aplicatii</h5>
                                 <p class="card-text">Numarul de joburi la care ai aplicat pana acum.</p>
-                                <h3 class="card-title">0</h3>
+                                <h3 class="card-title">{{$data->nrAplicatii}}</h3>
                             </div>
                         </div>
                     </div>
@@ -82,11 +82,6 @@
                         <p class="mt-5">Din zona "Dashboard" poti controla si edita toate detaliile legate de contul tau.<br>
                             Daca intampini probleme poti oricand sa ne trimiti un email la adresa din pagina de Contact.
                         </p>
-                    </div>
-                    <div class="col-md-10">
-                        @foreach($userApp as $ua)
-                            <p>Id aplicatie: {{$ua->id}} , status: {{$ua->status}}</p>
-                        @endforeach
                     </div>
                 </div>
             </div>
