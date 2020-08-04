@@ -16,6 +16,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nume Job</th>
+                        <th scope="col">Regiune</th>
                         <th scope="col">Status</th>
                         <th scope="col">Interviu</th>
                         <th scope="col">Actiuni</th>
@@ -26,20 +27,28 @@
                     <tr>
                         <th scope="row">{{$app->id}}</th>
                         <td>{{$app->job->title}}</td>
+                        <td>{{$app->job->region}}</td>
                         <td style="{{$app->status == "Rejected" || $app->status == "Cancelled"  ? 'color:red' : 'color:green'}}">{{$app->status}}</td>
                         <td>Nesetat</td>
-                        <td style="{{$app->status == "Pending" ? '' : 'display:none!important;'}}">
-                            <button class="btn btn-sm btn-danger">
+                        <td>
+                            <button class="btn btn-sm btn-danger" style="{{$app->status == "Pending" ? '' : 'display:none!important;'}}">
                                 <a style="color:white;" href="{{$app->status == "Pending" ? route('cancelApplication',['appId'=>$app->id]) : ''}}">
                                     Anuleaza
+                                </a>
+                            </button>
+                            <button class="btn btn-sm btn-info">
+                                <a style="color:white;" href="{{route('getJobInfo',['id'=>$app->job->id])}}">
+                                    Vezi job
                                 </a>
                             </button>
                         </td>
                     </tr>
                 @endforeach
-
                 </tbody>
             </table>
+                <ul>
+                    {{$data->applications->links()}}
+                </ul>
         </div>
     </div>
 

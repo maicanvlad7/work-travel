@@ -36,7 +36,7 @@
         <![endif]-->
 
     <!-- header-start -->
-    @include('header)
+    @include('header')
 
     @yield('content')
 

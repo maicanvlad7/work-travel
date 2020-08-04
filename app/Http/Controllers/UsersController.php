@@ -44,7 +44,7 @@ class UsersController extends Controller
 
         $applications = Application::with('job')->where([
             'user_id' => Auth::id()
-        ])->get();
+        ])->paginate(3);
 
         $data = GetGeneralStats::getUserStats(Auth::user()->id);
         $data->applications = $applications;
