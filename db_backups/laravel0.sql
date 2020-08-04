@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Aug 2020 la 17:03
+-- Generation Time: 31 Iul 2020 la 18:52
 -- Versiune server: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -37,14 +37,6 @@ CREATE TABLE `applications` (
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `interview_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Salvarea datelor din tabel `applications`
---
-
-INSERT INTO `applications` (`id`, `created_at`, `updated_at`, `user_id`, `job_id`, `status`, `interview_id`) VALUES
-(1, '2020-07-31 13:56:12', '2020-07-31 13:56:12', 2, 1, 'Rejected', 0),
-(2, '2020-08-04 10:50:32', '2020-08-04 12:02:24', 2, 1, 'Cancelled', 0);
 
 -- --------------------------------------------------------
 
@@ -1013,7 +1005,7 @@ ALTER TABLE `visas`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`

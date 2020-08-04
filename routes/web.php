@@ -24,6 +24,8 @@ Route::post('/checker','PaymentsController@checker')->name('checkPayment');
 Route::get('/apply/{uid}/{jid}','ApplicationsController@store')->name('user_apply');
 
 Route::get('/my-dashboard','UsersController@dashboard')->middleware(['auth'])->name('user_dashboard');
+Route::get('/applications','UsersController@applications')->middleware(['auth'])->name('applications');
+Route::get('/cancel-application/{appId}','ApplicationsController@cancelApplication')->middleware(['auth'])->name('cancelApplication');
 
 Route::get('/simPdf','UsersController@showPdf')->name('show-pdf');
 

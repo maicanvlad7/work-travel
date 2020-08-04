@@ -7,5 +7,8 @@ use App\Features;
 
 class Jobs extends Model
 {
+    public function applications(){
+        $this->hasMany('App\Applications','job_id','id');
+    }
 
 }

@@ -13,7 +13,7 @@ class CheckApplication{
         ])->get();
 
         foreach ($app as $au){
-            if ($au->status !== 'Respins'){
+            if ($au->status == 'Pending'){
                 return 0;
             }
         }

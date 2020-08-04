@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Application;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\CheckRole;
+use App\Helpers\GetGeneralStats;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -29,16 +31,25 @@ class UsersController extends Controller
 
             //aplicatiile utilizatorului
             //$userApp = Application::where(['user_id' => Auth::id()])->get();
-
-            $data = (object)[];
-            $data->nrAplicatii = Application::where([
-                'user_id' => Auth::id(),
-            ])->count();
+            $data = GetGeneralStats::getUserStats(Auth::user()->id);
 
             return view('user.dashboard', compact('data'));
         }
         //incarcam dashboard diferit pentru fiecare rol de utilizator
 
+    }
+
+    public function applications(){
+
+
+        $applications = Application::with('job')->where([
+            'user_id' => Auth::id()
+        ])->get();
+
+        $data = GetGeneralStats::getUserStats(Auth::user()->id);
+        $data->applications = $applications;
+
+        return view('user.applications', compact('data'));
     }
 
     public function showPdf(Request $request) {

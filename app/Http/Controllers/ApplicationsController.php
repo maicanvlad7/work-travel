@@ -9,7 +9,6 @@ use App\Helpers\CheckApplication;
 class ApplicationsController extends Controller
 {
     //
-
     public static function store($userId,$jobId)
     {
         $data = [
@@ -28,5 +27,17 @@ class ApplicationsController extends Controller
             return back()->withErrors(['validare'=>'Ati aplicat deja la un alt loc de munca.']);
         }
 
+    }
+
+    public function cancelApplication($appId){
+        if (Application::where([
+            'id' => $appId
+        ])->update([
+            'status' => 'Cancelled'
+        ]) ) {
+            return back()->with(['success'=>'Aplicatie anulata cu succes']);
+        }else {
+            return back();
+        }
     }
 }
