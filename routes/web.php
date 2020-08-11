@@ -29,6 +29,9 @@ Route::get('/cancel-application/{appId}','ApplicationsController@cancelApplicati
 
 Route::get('/simPdf','UsersController@showPdf')->name('show-pdf');
 
+Route::get('/manApps','ManagerController@displayApplications')->middleware('auth')->name('manApplications');
+Route::post('/addInterview','ManagerController@addInterview')->middleware('auth')->name('addInterview');
+
 Auth::routes();
 
 

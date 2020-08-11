@@ -18,6 +18,39 @@ $(window).on('scroll', function () {
 
 $(document).ready(function(){
 
+    $('.addInt').on('click',function(){
+        $('#form-jid').val($(this).attr('data-jid'));
+        $('#form-uid').val($(this).attr('data-uid'));
+    });
+
+    $('#saveInt').click(function(e){
+        e.preventDefault();
+
+        let url = $('#form-url').val();
+        let jid = $('#form-jid').val();
+        let uid = $('#form-uid').val();
+        let date = $('#interviewDate').val();
+        let token = $("[name='_token']").val();
+
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                _token:token,
+                user_id : uid,
+                job_id: jid,
+                date_time: date,
+            },
+            success: function(response){
+                alert('merge');
+            },
+            error: function(error){
+                alert('hau bau');
+            }
+        });
+
+    });
     setTimeout(function () {
         $('#alert').hide();
     },3000);

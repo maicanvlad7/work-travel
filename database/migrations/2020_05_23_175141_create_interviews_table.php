@@ -18,7 +18,7 @@ class CreateInterviewsTable extends Migration
             $table->timestamps();
             $table->integer('user_id');
             $table->string('agency');
-            $table->date('date');
+            $table->dateTime('date');
             $table->integer('job_id');
         });
     }

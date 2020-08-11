@@ -13,4 +13,8 @@ class Application extends Model
     public function job(){
         return $this->hasOne('App\Jobs','id','job_id');
     }
+
+    public function user(){
+        return $this->hasOne('App\User','id','user_id');
+    }
 }
