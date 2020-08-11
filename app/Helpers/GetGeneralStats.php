@@ -22,4 +22,18 @@ class GetGeneralStats{
 
         return $stats;
     }
+
+    public static function getGeneralInfo() : object {
+
+        $count = (object)[];
+
+        $count->aplicatii = DB::table('applications')->count();
+        $count->interviuri = DB::table('interviews')->count();
+        $count->studenti = DB::table('users')->where([
+            'roles' => 'Student'
+        ])->get()->count();
+
+        return $count;
+    }
+
 }

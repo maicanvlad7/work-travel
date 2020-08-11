@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.studentDashboard')
 @section('content')
             <!-- ZONA DIN DREAPTA-->
                 <div class="row mt-5">

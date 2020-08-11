@@ -23,9 +23,9 @@ class UsersController extends Controller
         //daca este manager
         if(CheckRole::checkManager(Auth::user())){
             //incarcam pagina de manager
-            $managerInfo = (object)[];
-            $managerInfo->name = 'Codruta';
-            return view('manager.dashboard', compact('managerInfo'));
+            $data = GetGeneralStats::getGeneralInfo();
+            
+            return view('manager.dashboard', compact('data'));
 
         }else {
 
