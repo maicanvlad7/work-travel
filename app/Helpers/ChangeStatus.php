@@ -16,7 +16,20 @@ class ChangeStatus{
                 'status' => 'Pending'
             ])->update(['status'=>$status]);
 
+        return 1;
+
         //@TODO in functie de rezultat, daca aduce ceva ne uitam ce status are
 
+    }
+
+    public static function cancelApplication(int $userId): bool {
+        DB::table('applications')
+            ->where([
+                'user_id' => $userId
+            ])->latest()->update([
+                'status'=>'Rejected'
+            ]);
+
+        return 1;
     }
 }

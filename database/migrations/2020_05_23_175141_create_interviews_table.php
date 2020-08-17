@@ -17,7 +17,7 @@ class CreateInterviewsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('user_id');
-            $table->string('agency');
+            $table->string('status')->default('Pending');
             $table->dateTime('date');
             $table->integer('job_id');
         });

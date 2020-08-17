@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Application;
 use App\Helpers\CheckApplication;
+use App\Interview;
 
 class ApplicationsController extends Controller
 {
@@ -30,11 +31,12 @@ class ApplicationsController extends Controller
     }
 
     public function cancelApplication($appId){
-        if (Application::where([
+        if (
+            Application::where([
             'id' => $appId
         ])->update([
             'status' => 'Cancelled'
-        ]) ) {
+        ])) {
             return back()->with(['success'=>'Aplicatie anulata cu succes']);
         }else {
             return back();

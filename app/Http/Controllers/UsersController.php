@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Helpers\CheckRole;
 use App\Helpers\GetGeneralStats;
 use Illuminate\Support\Facades\DB;
+use App\Interview;
+use Illuminate\Validation\Rules\In;
 
 class UsersController extends Controller
 {
@@ -50,6 +52,19 @@ class UsersController extends Controller
         $data->applications = $applications;
 
         return view('user.applications', compact('data'));
+    }
+
+    public function viewInterviews() {
+
+        $interviews = Interview::with('job')->where([
+                'user_id' => Auth::id(),
+            ]
+        )->paginate(3);
+
+        $data = GetGeneralStats::getUserStats(Auth::user()->id);
+        $data->interviews = $interviews;
+
+        return view('user.interviews',compact('data'));
     }
 
     public function showPdf(Request $request) {

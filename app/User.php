@@ -38,6 +38,10 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     public function applications(){
-        $this->hasMany('App\Applications','job_id','id');
+        $this->hasMany('App\Applications','user_id','id');
+    }
+
+    public function interviews(){
+        $this->hasMany('App\Interview','user_id','id');
     }
 }

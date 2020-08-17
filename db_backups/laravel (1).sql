@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 11 Aug 2020 la 19:37
--- Versiune server: 10.1.30-MariaDB
--- PHP Version: 5.6.33
+-- Gazdă: 127.0.0.1
+-- Timp de generare: aug. 17, 2020 la 03:03 PM
+-- Versiune server: 10.4.11-MariaDB
+-- Versiune PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel`
+-- Bază de date: `laravel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `applications`
+-- Structură tabel pentru tabel `applications`
 --
 
 CREATE TABLE `applications` (
@@ -34,69 +34,67 @@ CREATE TABLE `applications` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `interview_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `applications`
+-- Eliminarea datelor din tabel `applications`
 --
 
 INSERT INTO `applications` (`id`, `created_at`, `updated_at`, `user_id`, `job_id`, `status`, `interview_id`) VALUES
-(1, '2020-07-31 13:56:12', '2020-07-31 13:56:12', 2, 1, 'Rejected', 0),
-(2, '2020-08-04 10:50:32', '2020-08-04 12:09:55', 2, 1, 'Cancelled', 0),
-(3, '2020-08-04 12:10:04', '2020-08-04 12:13:57', 2, 1, 'Cancelled', 0),
-(4, '2020-08-04 12:14:05', '2020-08-11 12:52:35', 2, 1, 'Cancelled', 0),
-(5, '2020-08-11 12:52:47', '2020-08-11 12:52:47', 2, 1, 'Accepted', 0);
+(2, '2020-07-20 17:18:32', '2020-07-20 17:18:32', 5, 2, 'Rejected', 0),
+(4, '2020-08-17 08:52:17', '2020-08-17 08:52:27', 5, 3, 'Rejected', 0),
+(6, '2020-08-17 09:41:57', '2020-08-17 09:41:57', 5, 2, 'Rejected', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `categories`
+-- Structură tabel pentru tabel `categories`
 --
 
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT '1',
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` int(11) NOT NULL DEFAULT 1,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `categories`
+-- Eliminarea datelor din tabel `categories`
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 'Category 1', 'category-1', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(2, NULL, 1, 'Category 2', 'category-2', '2020-07-31 12:58:12', '2020-07-31 12:58:12');
+(1, NULL, 1, 'Category 1', 'category-1', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(2, NULL, 1, 'Category 2', 'category-2', '2020-05-24 14:03:49', '2020-05-24 14:03:49');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `data_rows`
+-- Structură tabel pentru tabel `data_rows`
 --
 
 CREATE TABLE `data_rows` (
   `id` int(10) UNSIGNED NOT NULL,
   `data_type_id` int(10) UNSIGNED NOT NULL,
-  `field` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT '0',
-  `browse` tinyint(1) NOT NULL DEFAULT '1',
-  `read` tinyint(1) NOT NULL DEFAULT '1',
-  `edit` tinyint(1) NOT NULL DEFAULT '1',
-  `add` tinyint(1) NOT NULL DEFAULT '1',
-  `delete` tinyint(1) NOT NULL DEFAULT '1',
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `order` int(11) NOT NULL DEFAULT '1'
+  `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `required` tinyint(1) NOT NULL DEFAULT 0,
+  `browse` tinyint(1) NOT NULL DEFAULT 1,
+  `read` tinyint(1) NOT NULL DEFAULT 1,
+  `edit` tinyint(1) NOT NULL DEFAULT 1,
+  `add` tinyint(1) NOT NULL DEFAULT 1,
+  `delete` tinyint(1) NOT NULL DEFAULT 1,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `data_rows`
+-- Eliminarea datelor din tabel `data_rows`
 --
 
 INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
@@ -154,48 +152,66 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
 (53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12);
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(56, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(57, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 2),
+(58, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 3),
+(59, 8, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 4),
+(60, 9, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(61, 9, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 2),
+(62, 9, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 3),
+(63, 9, 'facilities', 'text', 'Facilities', 1, 1, 1, 1, 1, 1, '{}', 4),
+(64, 9, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 5),
+(65, 9, 'employer', 'text', 'Employer', 1, 1, 1, 1, 1, 1, '{}', 6),
+(66, 9, 'rate', 'text', 'Rate', 1, 1, 1, 1, 1, 1, '{}', 7),
+(67, 9, 'hours', 'text', 'Hours', 1, 1, 1, 1, 1, 1, '{}', 8),
+(68, 9, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 9),
+(69, 9, 'available_positions', 'text', 'Available Positions', 1, 1, 1, 1, 1, 1, '{}', 10),
+(70, 9, 'region', 'text', 'Region', 0, 1, 1, 1, 1, 1, '{}', 11),
+(71, 9, 'image_path', 'text', 'Image Path', 0, 1, 1, 1, 1, 1, '{}', 12);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `data_types`
+-- Structură tabel pentru tabel `data_types`
 --
 
 CREATE TABLE `data_types` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_singular` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_plural` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `policy_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `controller` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
-  `server_side` tinyint(4) NOT NULL DEFAULT '0',
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_singular` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_plural` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `policy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT 0,
+  `server_side` tinyint(4) NOT NULL DEFAULT 0,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `data_types`
+-- Eliminarea datelor din tabel `data_types`
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-07-31 12:58:12', '2020-07-31 12:58:12');
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(8, 'features', 'features', 'Feature', 'Features', NULL, 'App\\Features', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-05-24 14:06:34', '2020-05-24 14:06:34'),
+(9, 'jobs', 'jobs', 'Job', 'Jobs', NULL, 'App\\Jobs', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-05-24 14:08:15', '2020-05-24 14:08:15');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `documents`
+-- Structură tabel pentru tabel `documents`
 --
 
 CREATE TABLE `documents` (
@@ -203,14 +219,14 @@ CREATE TABLE `documents` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `storage_path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `storage_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `failed_jobs`
+-- Structură tabel pentru tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -219,13 +235,13 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `favourites`
+-- Structură tabel pentru tabel `favourites`
 --
 
 CREATE TABLE `favourites` (
@@ -239,28 +255,30 @@ CREATE TABLE `favourites` (
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `features`
+-- Structură tabel pentru tabel `features`
 --
 
 CREATE TABLE `features` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `features`
+-- Eliminarea datelor din tabel `features`
 --
 
 INSERT INTO `features` (`id`, `created_at`, `updated_at`, `name`) VALUES
-(1, NULL, NULL, 'Decontare cazare'),
-(2, NULL, NULL, 'Transport gratuit');
+(1, '2020-05-24 17:06:00', '2020-05-24 14:07:41', 'plata chirie 10%'),
+(2, NULL, NULL, 'Decont autobuz'),
+(3, NULL, NULL, 'plata chirie 20%'),
+(4, NULL, NULL, 'Decont autobuz');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `interviews`
+-- Structură tabel pentru tabel `interviews`
 --
 
 CREATE TABLE `interviews` (
@@ -268,111 +286,118 @@ CREATE TABLE `interviews` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `agency` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
   `date` datetime NOT NULL,
   `job_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `interviews`
+-- Eliminarea datelor din tabel `interviews`
 --
 
-INSERT INTO `interviews` (`id`, `created_at`, `updated_at`, `user_id`, `agency`, `date`, `job_id`) VALUES
-(2, NULL, NULL, 2, 'Not defined', '2020-08-11 20:31:00', 1);
+INSERT INTO `interviews` (`id`, `created_at`, `updated_at`, `user_id`, `status`, `date`, `job_id`) VALUES
+(5, NULL, NULL, 5, 'Respins', '2020-08-17 14:53:00', 3),
+(6, NULL, NULL, 5, 'Respins', '2020-08-22 19:45:00', 2);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `jobs`
+-- Structură tabel pentru tabel `jobs`
 --
 
 CREATE TABLE `jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `facilities` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `employer` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facilities` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `employer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hours` int(11) NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `available_positions` int(11) NOT NULL,
-  `region` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Region not specified'
+  `region` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_path` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `jobs`
+-- Eliminarea datelor din tabel `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `created_at`, `updated_at`, `facilities`, `title`, `employer`, `rate`, `hours`, `description`, `available_positions`, `region`) VALUES
-(1, NULL, NULL, '1,2', 'Barista under the moon', 'The Tiki Hut', '11', 40, 'Work under the stars and get paid under minimal wage', 3, 'Region not specified');
+INSERT INTO `jobs` (`id`, `created_at`, `updated_at`, `facilities`, `title`, `employer`, `rate`, `hours`, `description`, `available_positions`, `region`, `image_path`) VALUES
+(1, NULL, NULL, '1,2', 'Server', 'Lil Hut Casino', '20', 50, 'Nice little place to work at I really enjoyed my stay here but I wouldn\'t go again.', 3, 'Hawaii', 'img/place/1.png'),
+(2, NULL, NULL, '1,2,3', 'Busser', 'Il Padrino', '11.5', 30, '', 3, 'Chicago', 'img/place/2.png'),
+(3, NULL, NULL, '1,2,3', 'Delivery boy/girl', 'UPS', '15', 50, 'Deliver the undelivrable.', 3, 'New York', 'img/place/3.png'),
+(4, '2020-05-24 14:09:00', '2020-05-24 14:09:54', '1,4', 'Casier McDonalds Buzau', 'McDonalds', '10', 40, 'Imi place sa lucrez la Mc pt ca mananc nesanatos gratis', 10, 'Buzau', 'img/place/2.png');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `menus`
+-- Structură tabel pentru tabel `menus`
 --
 
 CREATE TABLE `menus` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `menus`
+-- Eliminarea datelor din tabel `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '2020-07-31 12:55:47', '2020-07-31 12:55:47');
+(1, 'admin', '2020-05-24 13:59:27', '2020-05-24 13:59:27');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `menu_items`
+-- Structură tabel pentru tabel `menu_items`
 --
 
 CREATE TABLE `menu_items` (
   `id` int(10) UNSIGNED NOT NULL,
   `menu_id` int(10) UNSIGNED DEFAULT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
-  `icon_class` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
+  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `order` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `route` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8mb4_unicode_ci
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parameters` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `menu_items`
+-- Eliminarea datelor din tabel `menu_items`
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
-(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2020-07-31 12:55:47', '2020-07-31 12:55:47', NULL, NULL),
-(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.settings.index', NULL),
-(11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 13, '2020-07-31 12:55:47', '2020-07-31 12:55:47', 'voyager.hooks', NULL),
-(12, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2020-07-31 12:58:12', '2020-07-31 12:58:12', 'voyager.categories.index', NULL),
-(13, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2020-07-31 12:58:12', '2020-07-31 12:58:12', 'voyager.posts.index', NULL),
-(14, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2020-07-31 12:58:12', '2020-07-31 12:58:12', 'voyager.pages.index', NULL);
+(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.dashboard', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2020-05-24 13:59:27', '2020-05-24 13:59:27', NULL, NULL),
+(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.menus.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.settings.index', NULL),
+(11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 13, '2020-05-24 13:59:27', '2020-05-24 13:59:27', 'voyager.hooks', NULL),
+(12, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2020-05-24 14:03:49', '2020-05-24 14:03:49', 'voyager.categories.index', NULL),
+(13, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2020-05-24 14:03:49', '2020-05-24 14:03:49', 'voyager.posts.index', NULL),
+(14, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2020-05-24 14:03:49', '2020-05-24 14:03:49', 'voyager.pages.index', NULL),
+(15, 1, 'Features', '', '_self', NULL, NULL, NULL, 15, '2020-05-24 14:06:34', '2020-05-24 14:06:34', 'voyager.features.index', NULL),
+(16, 1, 'Jobs', '', '_self', NULL, NULL, NULL, 16, '2020-05-24 14:08:15', '2020-05-24 14:08:15', 'voyager.jobs.index', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `migrations`
+-- Structură tabel pentru tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -382,178 +407,219 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `migrations`
+-- Eliminarea datelor din tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(37, '2020_07_30_171123_update_users_table', 1),
-(39, '2014_10_12_000000_create_users_table', 2),
-(40, '2014_10_12_100000_create_password_resets_table', 2),
-(41, '2016_01_01_000000_add_voyager_user_fields', 2),
-(42, '2016_01_01_000000_create_data_types_table', 2),
-(43, '2016_01_01_000000_create_pages_table', 2),
-(44, '2016_01_01_000000_create_posts_table', 2),
-(45, '2016_02_15_204651_create_categories_table', 2),
-(46, '2016_05_19_173453_create_menu_table', 2),
-(47, '2016_10_21_190000_create_roles_table', 2),
-(48, '2016_10_21_190000_create_settings_table', 2),
-(49, '2016_11_30_135954_create_permission_table', 2),
-(50, '2016_11_30_141208_create_permission_role_table', 2),
-(51, '2016_12_26_201236_data_types__add__server_side', 2),
-(52, '2017_01_13_000000_add_route_to_menu_items_table', 2),
-(53, '2017_01_14_005015_create_translations_table', 2),
-(54, '2017_01_15_000000_make_table_name_nullable_in_permissions_table', 2),
-(55, '2017_03_06_000000_add_controller_to_data_types_table', 2),
-(56, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
-(57, '2017_04_21_000000_add_order_to_data_rows_table', 2),
-(58, '2017_07_05_210000_add_policyname_to_data_types_table', 2),
-(59, '2017_08_05_000000_add_group_to_settings_table', 2),
-(60, '2017_11_26_013050_add_user_role_relationship', 2),
-(61, '2017_11_26_015000_create_user_roles_table', 2),
-(62, '2018_03_11_000000_add_user_settings', 2),
-(63, '2018_03_14_000000_add_details_to_data_types_table', 2),
-(64, '2018_03_16_000000_make_settings_value_nullable', 2),
-(65, '2019_08_19_000000_create_failed_jobs_table', 2),
-(66, '2020_05_23_175105_create_jobs_table', 2),
-(67, '2020_05_23_175141_create_interviews_table', 2),
-(68, '2020_05_23_175219_create_favourites_table', 2),
-(69, '2020_05_23_175238_create_applications_table', 2),
-(70, '2020_05_23_175254_create_features_table', 2),
-(71, '2020_05_23_175312_create_documents_table', 2),
-(72, '2020_05_23_175325_create_tests_table', 2),
-(73, '2020_05_23_175331_create_visas_table', 2),
-(74, '2020_05_23_180944_create_payments_table', 2),
-(75, '2020_07_31_154057_update_payments_table', 2),
-(76, '2020_07_31_154443_update_users_table2', 2),
-(77, '2020_07_31_165114_update_jobs_table_add_region', 3);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2019_08_19_000000_create_failed_jobs_table', 1),
+(3, '2014_10_12_100000_create_password_resets_table', 2),
+(4, '2020_05_23_175105_create_jobs_table', 3),
+(5, '2020_05_23_175141_create_interviews_table', 3),
+(6, '2020_05_23_175219_create_favourites_table', 3),
+(7, '2020_05_23_175238_create_applications_table', 4),
+(8, '2020_05_23_175254_create_features_table', 4),
+(9, '2020_05_23_175312_create_documents_table', 4),
+(10, '2020_05_23_175325_create_tests_table', 4),
+(11, '2020_05_23_175331_create_visas_table', 4),
+(12, '2020_05_23_180944_create_payments_table', 5),
+(13, '2016_01_01_000000_add_voyager_user_fields', 6),
+(14, '2016_01_01_000000_create_data_types_table', 6),
+(15, '2016_05_19_173453_create_menu_table', 6),
+(16, '2016_10_21_190000_create_roles_table', 6),
+(17, '2016_10_21_190000_create_settings_table', 6),
+(18, '2016_11_30_135954_create_permission_table', 6),
+(19, '2016_11_30_141208_create_permission_role_table', 6),
+(20, '2016_12_26_201236_data_types__add__server_side', 6),
+(21, '2017_01_13_000000_add_route_to_menu_items_table', 6),
+(22, '2017_01_14_005015_create_translations_table', 6),
+(23, '2017_01_15_000000_make_table_name_nullable_in_permissions_table', 6),
+(24, '2017_03_06_000000_add_controller_to_data_types_table', 6),
+(25, '2017_04_21_000000_add_order_to_data_rows_table', 6),
+(26, '2017_07_05_210000_add_policyname_to_data_types_table', 6),
+(27, '2017_08_05_000000_add_group_to_settings_table', 6),
+(28, '2017_11_26_013050_add_user_role_relationship', 6),
+(29, '2017_11_26_015000_create_user_roles_table', 6),
+(30, '2018_03_11_000000_add_user_settings', 6),
+(31, '2018_03_14_000000_add_details_to_data_types_table', 6),
+(32, '2018_03_16_000000_make_settings_value_nullable', 6),
+(33, '2016_01_01_000000_create_pages_table', 7),
+(34, '2016_01_01_000000_create_posts_table', 7),
+(35, '2016_02_15_204651_create_categories_table', 7),
+(36, '2017_04_11_000000_alter_post_nullable_fields_table', 7),
+(37, '2020_07_03_193020_create_money_table', 8),
+(38, '2020_07_03_193402_create_status_table', 8),
+(39, '2020_07_05_144544_create_projects_table', 9),
+(40, '2020_07_05_144913_create_workflow_table', 9),
+(41, '2020_07_05_155702_create_workflows_table', 10);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `pages`
+-- Structură tabel pentru tabel `money`
+--
+
+CREATE TABLE `money` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `details` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_id` bigint(20) UNSIGNED NOT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Eliminarea datelor din tabel `money`
+--
+
+INSERT INTO `money` (`id`, `created_at`, `updated_at`, `details`, `status_id`, `amount`) VALUES
+(7, '2020-07-03 18:03:59', '2020-07-03 18:03:59', 'Monitor gaming 144 Hz', 1, '1107'),
+(9, '2020-07-03 18:04:49', '2020-07-03 18:04:49', 'Adidasi NiteJogger', 1, '460'),
+(10, '2020-07-03 18:05:06', '2020-07-03 18:05:06', 'Aspirator', 3, '220'),
+(11, '2020-07-03 18:18:45', '2020-07-03 18:18:45', 'Spaga tata', 2, '200'),
+(15, '2020-07-05 11:34:39', '2020-07-05 11:34:39', 'Servicii web Stomis', 2, '400'),
+(16, '2020-07-05 11:35:00', '2020-07-05 11:35:00', 'Motorina', 3, '100'),
+(17, '2020-07-05 11:35:13', '2020-07-05 11:35:13', 'Bani parinti', 2, '150'),
+(18, '2020-07-05 14:14:59', '2020-07-05 14:14:59', 'Finalizare casa din padure', 1, '1100');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `pages`
 --
 
 CREATE TABLE `pages` (
   `id` int(10) UNSIGNED NOT NULL,
   `author_id` int(11) NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci,
-  `body` text COLLATE utf8mb4_unicode_ci,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci,
-  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'INACTIVE',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `pages`
+-- Eliminarea datelor din tabel `pages`
 --
 
 INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Hello World', 'Hang the jib grog grog blossom grapple dance the hempen jig gangway pressgang bilge rat to go on account lugger. Nelsons folly gabion line draught scallywag fire ship gaff fluke fathom case shot. Sea Legs bilge rat sloop matey gabion long clothes run a shot across the bow Gold Road cog league.', '<p>Hello World. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', 'pages/page1.jpg', 'hello-world', 'Yar Meta Description', 'Keyword1, Keyword2', 'ACTIVE', '2020-07-31 12:58:12', '2020-07-31 12:58:12');
+(1, 0, 'Hello World', 'Hang the jib grog grog blossom grapple dance the hempen jig gangway pressgang bilge rat to go on account lugger. Nelsons folly gabion line draught scallywag fire ship gaff fluke fathom case shot. Sea Legs bilge rat sloop matey gabion long clothes run a shot across the bow Gold Road cog league.', '<p>Hello World. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', 'pages/page1.jpg', 'hello-world', 'Yar Meta Description', 'Keyword1, Keyword2', 'ACTIVE', '2020-05-24 14:03:49', '2020-05-24 14:03:49');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `password_resets`
+-- Structură tabel pentru tabel `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `payments`
+-- Structură tabel pentru tabel `payments`
 --
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bank` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `used` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0'
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `used` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `payments`
+-- Eliminarea datelor din tabel `payments`
 --
 
 INSERT INTO `payments` (`id`, `created_at`, `updated_at`, `token`, `bank`, `used`) VALUES
-(1, NULL, NULL, 'asd123', 'ING', '0');
+(1, NULL, NULL, 'asd', 'ING', 0),
+(2, NULL, NULL, 'asd', 'ING', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `permissions`
+-- Structură tabel pentru tabel `permissions`
 --
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `permissions`
+-- Eliminarea datelor din tabel `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`) VALUES
-(1, 'browse_admin', NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(2, 'browse_bread', NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(3, 'browse_database', NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(4, 'browse_media', NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(5, 'browse_compass', NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(6, 'browse_menus', 'menus', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(7, 'read_menus', 'menus', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(8, 'edit_menus', 'menus', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(9, 'add_menus', 'menus', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(10, 'delete_menus', 'menus', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(11, 'browse_roles', 'roles', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(12, 'read_roles', 'roles', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(13, 'edit_roles', 'roles', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(14, 'add_roles', 'roles', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(15, 'delete_roles', 'roles', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(16, 'browse_users', 'users', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(17, 'read_users', 'users', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(18, 'edit_users', 'users', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(19, 'add_users', 'users', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(20, 'delete_users', 'users', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(21, 'browse_settings', 'settings', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(22, 'read_settings', 'settings', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(23, 'edit_settings', 'settings', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(24, 'add_settings', 'settings', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(25, 'delete_settings', 'settings', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(26, 'browse_hooks', NULL, '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(27, 'browse_categories', 'categories', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(28, 'read_categories', 'categories', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(29, 'edit_categories', 'categories', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(30, 'add_categories', 'categories', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(31, 'delete_categories', 'categories', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(32, 'browse_posts', 'posts', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(33, 'read_posts', 'posts', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(34, 'edit_posts', 'posts', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(35, 'add_posts', 'posts', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(36, 'delete_posts', 'posts', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(37, 'browse_pages', 'pages', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(38, 'read_pages', 'pages', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(39, 'edit_pages', 'pages', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(40, 'add_pages', 'pages', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(41, 'delete_pages', 'pages', '2020-07-31 12:58:12', '2020-07-31 12:58:12');
+(1, 'browse_admin', NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(2, 'browse_bread', NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(3, 'browse_database', NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(4, 'browse_media', NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(5, 'browse_compass', NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(6, 'browse_menus', 'menus', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(7, 'read_menus', 'menus', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(8, 'edit_menus', 'menus', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(9, 'add_menus', 'menus', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(10, 'delete_menus', 'menus', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(11, 'browse_roles', 'roles', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(12, 'read_roles', 'roles', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(13, 'edit_roles', 'roles', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(14, 'add_roles', 'roles', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(15, 'delete_roles', 'roles', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(16, 'browse_users', 'users', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(17, 'read_users', 'users', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(18, 'edit_users', 'users', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(19, 'add_users', 'users', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(20, 'delete_users', 'users', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(21, 'browse_settings', 'settings', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(22, 'read_settings', 'settings', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(23, 'edit_settings', 'settings', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(24, 'add_settings', 'settings', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(25, 'delete_settings', 'settings', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(26, 'browse_hooks', NULL, '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(27, 'browse_categories', 'categories', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(28, 'read_categories', 'categories', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(29, 'edit_categories', 'categories', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(30, 'add_categories', 'categories', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(31, 'delete_categories', 'categories', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(32, 'browse_posts', 'posts', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(33, 'read_posts', 'posts', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(34, 'edit_posts', 'posts', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(35, 'add_posts', 'posts', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(36, 'delete_posts', 'posts', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(37, 'browse_pages', 'pages', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(38, 'read_pages', 'pages', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(39, 'edit_pages', 'pages', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(40, 'add_pages', 'pages', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(41, 'delete_pages', 'pages', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(42, 'browse_features', 'features', '2020-05-24 14:06:34', '2020-05-24 14:06:34'),
+(43, 'read_features', 'features', '2020-05-24 14:06:34', '2020-05-24 14:06:34'),
+(44, 'edit_features', 'features', '2020-05-24 14:06:34', '2020-05-24 14:06:34'),
+(45, 'add_features', 'features', '2020-05-24 14:06:34', '2020-05-24 14:06:34'),
+(46, 'delete_features', 'features', '2020-05-24 14:06:34', '2020-05-24 14:06:34'),
+(47, 'browse_jobs', 'jobs', '2020-05-24 14:08:15', '2020-05-24 14:08:15'),
+(48, 'read_jobs', 'jobs', '2020-05-24 14:08:15', '2020-05-24 14:08:15'),
+(49, 'edit_jobs', 'jobs', '2020-05-24 14:08:15', '2020-05-24 14:08:15'),
+(50, 'add_jobs', 'jobs', '2020-05-24 14:08:15', '2020-05-24 14:08:15'),
+(51, 'delete_jobs', 'jobs', '2020-05-24 14:08:15', '2020-05-24 14:08:15');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `permission_role`
+-- Structură tabel pentru tabel `permission_role`
 --
 
 CREATE TABLE `permission_role` (
@@ -562,128 +628,165 @@ CREATE TABLE `permission_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `permission_role`
+-- Eliminarea datelor din tabel `permission_role`
 --
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
-(1, 2),
-(2, 2),
-(3, 2),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 2),
-(8, 2),
-(9, 2),
-(10, 2),
-(11, 2),
-(12, 2),
-(13, 2),
-(14, 2),
-(15, 2),
-(16, 2),
-(17, 2),
-(18, 2),
-(19, 2),
-(20, 2),
-(21, 2),
-(22, 2),
-(23, 2),
-(24, 2),
-(25, 2),
-(26, 2),
-(27, 2),
-(28, 2),
-(29, 2),
-(30, 2),
-(31, 2),
-(32, 2),
-(33, 2),
-(34, 2),
-(35, 2),
-(36, 2),
-(37, 2),
-(38, 2),
-(39, 2),
-(40, 2),
-(41, 2);
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1),
+(38, 1),
+(39, 1),
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `posts`
+-- Structură tabel pentru tabel `posts`
 --
 
 CREATE TABLE `posts` (
   `id` int(10) UNSIGNED NOT NULL,
   `author_id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci,
-  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('PUBLISHED','DRAFT','PENDING') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
-  `featured` tinyint(1) NOT NULL DEFAULT '0',
+  `featured` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `posts`
+-- Eliminarea datelor din tabel `posts`
 --
 
 INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `featured`, `created_at`, `updated_at`) VALUES
-(1, 0, NULL, 'Lorem Ipsum Post', NULL, 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/post1.jpg', 'lorem-ipsum-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-07-31 12:58:12', '2020-07-31 12:58:12');
+(1, 0, NULL, 'Lorem Ipsum Post', NULL, 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/post1.jpg', 'lorem-ipsum-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-05-24 14:03:49', '2020-05-24 14:03:49');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `roles`
+-- Structură tabel pentru tabel `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Eliminarea datelor din tabel `projects`
+--
+
+INSERT INTO `projects` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Stomis', 'Clinica de stomatologie din Buzau', 'ONGOING', '2020-07-05 12:15:25', '2020-07-05 12:15:25'),
+(2, 'Cabana din padure', 'Alt site pentru Oscar Campina', 'ONGOING', '2020-07-05 12:18:25', '2020-07-05 12:18:25'),
+(3, 'Hotel Oscar', 'Derivat din Restaurant Oscar', 'ONGOING', '2020-07-05 12:18:46', '2020-07-05 12:18:46'),
+(4, 'Mannafoods', 'Cateva mici modificari', 'ONGOING', '2020-07-05 12:18:55', '2020-07-05 12:18:55'),
+(5, 'DragonMag', 'Magazin online de electronice', 'ONGOING', '2020-07-05 12:19:03', '2020-07-05 12:19:03'),
+(6, 'USR Buzau', 'Pagina USR Buzau', 'ONGOING', '2020-07-05 12:19:43', '2020-07-05 12:19:43'),
+(7, 'PubliProd Concept', 'Adaugare de pagini si continut pe pagini', 'ONGOING', '2020-07-05 14:13:17', '2020-07-05 14:13:17');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `roles`
 --
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `roles`
+-- Eliminarea datelor din tabel `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'Administrator', NULL, NULL),
-(2, 'admin', 'Administrator', '2020-07-31 12:55:47', '2020-07-31 12:55:47'),
-(3, 'user', 'Normal User', '2020-07-31 12:55:47', '2020-07-31 12:55:47');
+(1, 'admin', 'Administrator', '2020-05-24 13:59:27', '2020-05-24 13:59:27'),
+(2, 'user', 'Normal User', '2020-05-24 13:59:27', '2020-05-24 13:59:27');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `settings`
+-- Structură tabel pentru tabel `settings`
 --
 
 CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT '1',
-  `group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` int(11) NOT NULL DEFAULT 1,
+  `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `settings`
+-- Eliminarea datelor din tabel `settings`
 --
 
 INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`, `group`) VALUES
@@ -701,7 +804,30 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `tests`
+-- Structură tabel pentru tabel `status`
+--
+
+CREATE TABLE `status` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Eliminarea datelor din tabel `status`
+--
+
+INSERT INTO `status` (`id`, `created_at`, `updated_at`, `name`) VALUES
+(1, NULL, NULL, 'Astept Restituire'),
+(2, NULL, NULL, 'Incasat'),
+(3, NULL, NULL, 'Platit'),
+(4, NULL, NULL, 'Platit');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `tests`
 --
 
 CREATE TABLE `tests` (
@@ -709,102 +835,101 @@ CREATE TABLE `tests` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `author` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `translations`
+-- Structură tabel pentru tabel `translations`
 --
 
 CREATE TABLE `translations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `column_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `column_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foreign_key` int(10) UNSIGNED NOT NULL,
-  `locale` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `translations`
+-- Eliminarea datelor din tabel `translations`
 --
 
 INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'data_types', 'display_name_singular', 5, 'pt', 'Post', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(2, 'data_types', 'display_name_singular', 6, 'pt', 'Página', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(3, 'data_types', 'display_name_singular', 1, 'pt', 'Utilizador', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(4, 'data_types', 'display_name_singular', 4, 'pt', 'Categoria', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(5, 'data_types', 'display_name_singular', 2, 'pt', 'Menu', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(6, 'data_types', 'display_name_singular', 3, 'pt', 'Função', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(7, 'data_types', 'display_name_plural', 5, 'pt', 'Posts', '2020-07-31 12:58:12', '2020-07-31 12:58:12'),
-(8, 'data_types', 'display_name_plural', 6, 'pt', 'Páginas', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(9, 'data_types', 'display_name_plural', 1, 'pt', 'Utilizadores', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(10, 'data_types', 'display_name_plural', 4, 'pt', 'Categorias', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(11, 'data_types', 'display_name_plural', 2, 'pt', 'Menus', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(12, 'data_types', 'display_name_plural', 3, 'pt', 'Funções', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(13, 'categories', 'slug', 1, 'pt', 'categoria-1', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(14, 'categories', 'name', 1, 'pt', 'Categoria 1', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(15, 'categories', 'slug', 2, 'pt', 'categoria-2', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(16, 'categories', 'name', 2, 'pt', 'Categoria 2', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(17, 'pages', 'title', 1, 'pt', 'Olá Mundo', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(18, 'pages', 'slug', 1, 'pt', 'ola-mundo', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(19, 'pages', 'body', 1, 'pt', '<p>Olá Mundo. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\r\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(20, 'menu_items', 'title', 1, 'pt', 'Painel de Controle', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(21, 'menu_items', 'title', 2, 'pt', 'Media', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(22, 'menu_items', 'title', 13, 'pt', 'Publicações', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(23, 'menu_items', 'title', 3, 'pt', 'Utilizadores', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(24, 'menu_items', 'title', 12, 'pt', 'Categorias', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(25, 'menu_items', 'title', 14, 'pt', 'Páginas', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(26, 'menu_items', 'title', 4, 'pt', 'Funções', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(27, 'menu_items', 'title', 5, 'pt', 'Ferramentas', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(28, 'menu_items', 'title', 6, 'pt', 'Menus', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(29, 'menu_items', 'title', 7, 'pt', 'Base de dados', '2020-07-31 12:58:13', '2020-07-31 12:58:13'),
-(30, 'menu_items', 'title', 10, 'pt', 'Configurações', '2020-07-31 12:58:13', '2020-07-31 12:58:13');
+(1, 'data_types', 'display_name_singular', 5, 'pt', 'Post', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(2, 'data_types', 'display_name_singular', 6, 'pt', 'Página', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(3, 'data_types', 'display_name_singular', 1, 'pt', 'Utilizador', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(4, 'data_types', 'display_name_singular', 4, 'pt', 'Categoria', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(5, 'data_types', 'display_name_singular', 2, 'pt', 'Menu', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(6, 'data_types', 'display_name_singular', 3, 'pt', 'Função', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(7, 'data_types', 'display_name_plural', 5, 'pt', 'Posts', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(8, 'data_types', 'display_name_plural', 6, 'pt', 'Páginas', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(9, 'data_types', 'display_name_plural', 1, 'pt', 'Utilizadores', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(10, 'data_types', 'display_name_plural', 4, 'pt', 'Categorias', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(11, 'data_types', 'display_name_plural', 2, 'pt', 'Menus', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(12, 'data_types', 'display_name_plural', 3, 'pt', 'Funções', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(13, 'categories', 'slug', 1, 'pt', 'categoria-1', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(14, 'categories', 'name', 1, 'pt', 'Categoria 1', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(15, 'categories', 'slug', 2, 'pt', 'categoria-2', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(16, 'categories', 'name', 2, 'pt', 'Categoria 2', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(17, 'pages', 'title', 1, 'pt', 'Olá Mundo', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(18, 'pages', 'slug', 1, 'pt', 'ola-mundo', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(19, 'pages', 'body', 1, 'pt', '<p>Olá Mundo. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\r\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(20, 'menu_items', 'title', 1, 'pt', 'Painel de Controle', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(21, 'menu_items', 'title', 2, 'pt', 'Media', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(22, 'menu_items', 'title', 13, 'pt', 'Publicações', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(23, 'menu_items', 'title', 3, 'pt', 'Utilizadores', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(24, 'menu_items', 'title', 12, 'pt', 'Categorias', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(25, 'menu_items', 'title', 14, 'pt', 'Páginas', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(26, 'menu_items', 'title', 4, 'pt', 'Funções', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(27, 'menu_items', 'title', 5, 'pt', 'Ferramentas', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(28, 'menu_items', 'title', 6, 'pt', 'Menus', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(29, 'menu_items', 'title', 7, 'pt', 'Base de dados', '2020-05-24 14:03:49', '2020-05-24 14:03:49'),
+(30, 'menu_items', 'title', 10, 'pt', 'Configurações', '2020-05-24 14:03:49', '2020-05-24 14:03:49');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `users`
+-- Structură tabel pentru tabel `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `role_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Student',
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `phone_nr` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
+  `phone_nr` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8mb4_unicode_ci,
+  `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `roles` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Student'
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Salvarea datelor din tabel `users`
+-- Eliminarea datelor din tabel `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `role`, `address`, `dob`, `phone_nr`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `roles`) VALUES
-(1, 1, 'Vladut Maican', NULL, NULL, NULL, '0764334890', 'maicanvlad1998@gmail.com', 'users/default.png', NULL, '$2y$10$ntbNZVLwoKKdNBd/oO8ByendksODURzWzh2ovlzgm7FF7PXgYjzUK', NULL, NULL, '2020-07-31 12:52:49', '2020-07-31 12:52:49', 'Manager'),
-(2, 3, 'Stefania', NULL, NULL, NULL, '0766666666', 'stef123@gmail.com', 'users/default.png', NULL, '$2y$10$/AL1Ki52HbX6gZgDUwUdkuiJpH5C7HiKDTc5tPxBBT51fkhODqxEe', NULL, NULL, '2020-07-31 12:57:38', '2020-07-31 12:57:38', 'Student'),
-(4, 2, 'Vladutul', NULL, NULL, NULL, NULL, 'maicanvlad19981@gmail.com', 'users/default.png', NULL, '$2y$10$sPkvhaFwRVVK1B4JxOownOM677DokVEk.0Lq5xjjkT2IRXlwjEBym', NULL, NULL, '2020-07-31 13:09:54', '2020-07-31 13:09:54', 'Student');
+INSERT INTO `users` (`id`, `role_id`, `name`, `roles`, `address`, `dob`, `phone_nr`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
+(4, 1, 'Stefania2', 'Student', NULL, NULL, '0764334890', 'maicanvlad199812@gmail.com', 'users/default.png', NULL, '$2y$10$AAxVCU4IfoeEXpdrqiTWDOATYA2sROpkMzRJJ7tUx/X2ZPSVkMPuS', NULL, NULL, '2020-05-22 17:43:10', '2020-05-22 17:43:10'),
+(5, 1, 'Vlad', 'Student', NULL, NULL, '0764334890', 'maicanvlad19981@gmail.com', 'users/default.png', NULL, '$2y$10$hroEQaTRTuXjDhd0tTkNaOFwW5EJ3xxYCsrXyAD8Sw.ePh8Yb/Wae', 'vlv4q9LTXnRxMgsOQ1zSp08qP4vrHvC7X3UULJPcLEt8jkahqPi4WYO2omPv', NULL, '2020-05-22 17:48:17', '2020-05-22 17:48:17'),
+(6, 1, 'Stefania Manaila', 'Manager', NULL, NULL, '0764334890', 'stef123@gmail.com', 'users/default.png', NULL, '$2y$10$hroEQaTRTuXjDhd0tTkNaOFwW5EJ3xxYCsrXyAD8Sw.ePh8Yb/Wae', 'qoevC09nWgGW348xDd9WOpJrREMAvl7J4YaJr4IJrP7f8iPC6mUCJEwlGSdJ', NULL, '2020-05-22 17:48:17', '2020-05-22 17:48:17');
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `user_roles`
+-- Structură tabel pentru tabel `user_roles`
 --
 
 CREATE TABLE `user_roles` (
@@ -812,17 +937,10 @@ CREATE TABLE `user_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Salvarea datelor din tabel `user_roles`
---
-
-INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
-(1, 2);
-
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `visas`
+-- Structură tabel pentru tabel `visas`
 --
 
 CREATE TABLE `visas` (
@@ -830,24 +948,82 @@ CREATE TABLE `visas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `interview_status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `interview_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Structură tabel pentru tabel `workflow`
+--
+
+CREATE TABLE `workflow` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `task_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ONGOING',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Eliminarea datelor din tabel `workflow`
+--
+
+INSERT INTO `workflow` (`id`, `task_name`, `desc`, `project_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Adaugare harta SVG pe USr Buzau', 'Trebuie sa adaug SVG si template de pagina pe USR', 6, 'ONGOING', '2020-07-05 12:51:01', '2020-07-05 12:51:01');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `workflows`
+--
+
+CREATE TABLE `workflows` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `task_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'ONGOING',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Eliminarea datelor din tabel `workflows`
+--
+
+INSERT INTO `workflows` (`id`, `task_name`, `desc`, `project_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Adaugare harta SVG pe USr Buzau', 'Trebuie sa adaug SVG si template de pagina pe USR', 6, 'ONGOING', '2020-07-05 12:58:29', '2020-07-05 12:58:29'),
+(2, 'Bani Andrei', 'Trimite bani Andrei 100lei pentru Manna Foods', 4, 'ONGOING', '2020-07-05 13:02:05', '2020-07-05 13:02:05'),
+(3, 'Termina casa din padure pana Marti!', 'INstalare tema de pe drive si prezentare site pana Mari', 2, 'TERMINAT', '2020-07-05 13:02:47', '2020-07-06 18:45:18'),
+(4, 'Vorbeste DraognMag', 'Vorbeste cu DragonMag pentru comenzi si reclama, ai lasat-o in pom de week trecut', 5, 'ONGOING', '2020-07-05 13:03:37', '2020-07-05 13:14:57'),
+(5, 'Upload Lgoo', 'Rezolvare problema cu logo-ul de la MannaFoods care nu merge incarcat pe LinkedIN', 4, 'TERMINAT', '2020-07-05 13:04:07', '2020-07-05 14:27:29'),
+(6, 'Office Email', 'Vb cu Stomis ca sa ii arati cum se conecteaza la adresa office de la stomis', 1, 'TERMINAT', '2020-07-05 13:04:41', '2020-07-06 14:49:20'),
+(7, 'Poze stomis', 'Cere poze stomis pentru continut', 1, 'TERMINAT', '2020-07-05 13:04:59', '2020-07-06 14:49:27'),
+(8, 'Pregateste reclame Stomis pentru si campanii', 'Cere parola de la facebook si prezinta imaginile pentru campaniile publicitare', 1, 'ONGOING', '2020-07-05 13:05:25', '2020-07-05 13:05:25'),
+(9, 'test task', 'asdasd', 3, 'TERMINAT', '2020-07-05 13:16:23', '2020-07-05 13:16:28'),
+(10, 'PubliProd concept stuff', 'Adaugare continut pe Publiprod AMR 450Lei', 7, 'ONGOING', '2020-07-05 14:13:36', '2020-07-05 14:13:36'),
+(11, 'Mo no', 'iubeste moni', 1, 'TERMINAT', '2020-07-05 14:52:38', '2020-07-05 14:52:56'),
+(12, 'Restul de pagini !!!!', 'Termina restul de pagini pentru Site si factureaza', 2, 'ONGOING', '2020-07-06 18:45:41', '2020-07-06 18:45:41'),
+(13, 'Stabileste intalnire pentru Marti seara cu Andy!', 'Marti ora 18 intalnire cu Andy pe skype! Discuta si despre pagina de isntagram neaparat!', 2, 'ONGOING', '2020-07-06 18:46:17', '2020-07-06 18:46:17');
+
+--
+-- Indexuri pentru tabele eliminate
 --
 
 --
--- Indexes for table `applications`
+-- Indexuri pentru tabele `applications`
 --
 ALTER TABLE `applications`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categories`
+-- Indexuri pentru tabele `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
@@ -855,14 +1031,14 @@ ALTER TABLE `categories`
   ADD KEY `categories_parent_id_foreign` (`parent_id`);
 
 --
--- Indexes for table `data_rows`
+-- Indexuri pentru tabele `data_rows`
 --
 ALTER TABLE `data_rows`
   ADD PRIMARY KEY (`id`),
   ADD KEY `data_rows_data_type_id_foreign` (`data_type_id`);
 
 --
--- Indexes for table `data_types`
+-- Indexuri pentru tabele `data_types`
 --
 ALTER TABLE `data_types`
   ADD PRIMARY KEY (`id`),
@@ -870,89 +1046,95 @@ ALTER TABLE `data_types`
   ADD UNIQUE KEY `data_types_slug_unique` (`slug`);
 
 --
--- Indexes for table `documents`
+-- Indexuri pentru tabele `documents`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indexuri pentru tabele `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `favourites`
+-- Indexuri pentru tabele `favourites`
 --
 ALTER TABLE `favourites`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `features`
+-- Indexuri pentru tabele `features`
 --
 ALTER TABLE `features`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `interviews`
+-- Indexuri pentru tabele `interviews`
 --
 ALTER TABLE `interviews`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jobs`
+-- Indexuri pentru tabele `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `menus`
+-- Indexuri pentru tabele `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `menus_name_unique` (`name`);
 
 --
--- Indexes for table `menu_items`
+-- Indexuri pentru tabele `menu_items`
 --
 ALTER TABLE `menu_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `menu_items_menu_id_foreign` (`menu_id`);
 
 --
--- Indexes for table `migrations`
+-- Indexuri pentru tabele `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pages`
+-- Indexuri pentru tabele `money`
+--
+ALTER TABLE `money`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `pages_slug_unique` (`slug`);
 
 --
--- Indexes for table `password_resets`
+-- Indexuri pentru tabele `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `payments`
+-- Indexuri pentru tabele `payments`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permissions`
+-- Indexuri pentru tabele `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `permissions_key_index` (`key`);
 
 --
--- Indexes for table `permission_role`
+-- Indexuri pentru tabele `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
@@ -960,41 +1142,53 @@ ALTER TABLE `permission_role`
   ADD KEY `permission_role_role_id_index` (`role_id`);
 
 --
--- Indexes for table `posts`
+-- Indexuri pentru tabele `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `posts_slug_unique` (`slug`);
 
 --
--- Indexes for table `roles`
+-- Indexuri pentru tabele `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_unique` (`name`);
 
 --
--- Indexes for table `settings`
+-- Indexuri pentru tabele `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `settings_key_unique` (`key`);
 
 --
--- Indexes for table `tests`
+-- Indexuri pentru tabele `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `tests`
 --
 ALTER TABLE `tests`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `translations`
+-- Indexuri pentru tabele `translations`
 --
 ALTER TABLE `translations`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `translations_table_name_column_name_foreign_key_locale_unique` (`table_name`,`column_name`,`foreign_key`,`locale`);
 
 --
--- Indexes for table `users`
+-- Indexuri pentru tabele `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -1002,7 +1196,7 @@ ALTER TABLE `users`
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `user_roles`
+-- Indexuri pentru tabele `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`user_id`,`role_id`),
@@ -1010,190 +1204,232 @@ ALTER TABLE `user_roles`
   ADD KEY `user_roles_role_id_index` (`role_id`);
 
 --
--- Indexes for table `visas`
+-- Indexuri pentru tabele `visas`
 --
 ALTER TABLE `visas`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexuri pentru tabele `workflow`
+--
+ALTER TABLE `workflow`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `workflows`
+--
+ALTER TABLE `workflows`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pentru tabele eliminate
 --
 
 --
--- AUTO_INCREMENT for table `applications`
+-- AUTO_INCREMENT pentru tabele `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT pentru tabele `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `data_rows`
+-- AUTO_INCREMENT pentru tabele `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT for table `data_types`
+-- AUTO_INCREMENT pentru tabele `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `documents`
+-- AUTO_INCREMENT pentru tabele `documents`
 --
 ALTER TABLE `documents`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT pentru tabele `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `favourites`
+-- AUTO_INCREMENT pentru tabele `favourites`
 --
 ALTER TABLE `favourites`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `features`
+-- AUTO_INCREMENT pentru tabele `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `interviews`
+-- AUTO_INCREMENT pentru tabele `interviews`
 --
 ALTER TABLE `interviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `jobs`
+-- AUTO_INCREMENT pentru tabele `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `menus`
+-- AUTO_INCREMENT pentru tabele `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `menu_items`
+-- AUTO_INCREMENT pentru tabele `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT pentru tabele `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `pages`
+-- AUTO_INCREMENT pentru tabele `money`
+--
+ALTER TABLE `money`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT pentru tabele `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `payments`
+-- AUTO_INCREMENT pentru tabele `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT pentru tabele `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT pentru tabele `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT pentru tabele `projects`
 --
-ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `projects`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `settings`
+-- AUTO_INCREMENT pentru tabele `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pentru tabele `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tests`
+-- AUTO_INCREMENT pentru tabele `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pentru tabele `tests`
 --
 ALTER TABLE `tests`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `translations`
+-- AUTO_INCREMENT pentru tabele `translations`
 --
 ALTER TABLE `translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pentru tabele `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `visas`
+-- AUTO_INCREMENT pentru tabele `visas`
 --
 ALTER TABLE `visas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Restrictii pentru tabele sterse
+-- AUTO_INCREMENT pentru tabele `workflow`
+--
+ALTER TABLE `workflow`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pentru tabele `workflows`
+--
+ALTER TABLE `workflows`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Constrângeri pentru tabele eliminate
 --
 
 --
--- Restrictii pentru tabele `categories`
+-- Constrângeri pentru tabele `categories`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Restrictii pentru tabele `data_rows`
+-- Constrângeri pentru tabele `data_rows`
 --
 ALTER TABLE `data_rows`
   ADD CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrictii pentru tabele `menu_items`
+-- Constrângeri pentru tabele `menu_items`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
 
 --
--- Restrictii pentru tabele `permission_role`
+-- Constrângeri pentru tabele `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Restrictii pentru tabele `users`
+-- Constrângeri pentru tabele `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
--- Restrictii pentru tabele `user_roles`
+-- Constrângeri pentru tabele `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,

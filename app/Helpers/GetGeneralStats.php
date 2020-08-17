@@ -27,7 +27,7 @@ class GetGeneralStats{
 
         $count = (object)[];
 
-        $count->aplicatii = DB::table('applications')->count();
+        $count->aplicatii = DB::table('applications')->where(['status'=>'Pending'])->count();
         $count->interviuri = DB::table('interviews')->count();
         $count->studenti = DB::table('users')->where([
             'roles' => 'Student'

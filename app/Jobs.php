@@ -11,4 +11,8 @@ class Jobs extends Model
         $this->hasMany('App\Applications','job_id','id');
     }
 
+    public function interviews(){
+        $this->hasMany('App\Interview','job_id','id');
+    }
+
 }

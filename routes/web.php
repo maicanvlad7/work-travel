@@ -32,6 +32,10 @@ Route::get('/simPdf','UsersController@showPdf')->name('show-pdf');
 Route::get('/manApps','ManagerController@displayApplications')->middleware('auth')->name('manApplications');
 Route::post('/addInterview','ManagerController@addInterview')->middleware('auth')->name('addInterview');
 
+Route::get('/interviews','UsersController@viewInterviews')->middleware('auth')->name('user_interviews');
+Route::get('/manInterviews','ManagerController@displayInterviews')->middleware('auth')->name('manInterviews');
+Route::get('/modifyInterview/{status}/{intId}/{userId}','ManagerController@modifyInterview')->middleware('auth')->name('modifyInt');
+
 Auth::routes();
 
 
