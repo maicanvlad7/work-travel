@@ -43,7 +43,7 @@ $(document).ready(function(){
                 date_time: date,
             },
             success: function(response){
-                alert('merge');
+                location.reload();
             },
             error: function(error){
                 alert('hau bau');

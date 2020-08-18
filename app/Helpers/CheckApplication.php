@@ -13,17 +13,12 @@ class CheckApplication{
         ])->get();
 
         foreach ($app as $au){
-            if ($au->status == 'Pending'){
+            if ($au->status !== 'Rejected'){
                 return 0;
             }
         }
 
         return 1;
-
-
-
-
-
 
 
 

@@ -82,6 +82,16 @@ h1, h2, h3, h4, h5 {
   color: #001D38;
 }
 
+/*CUSTOM CSS*/
+.destinationHeader{
+    border: 1px solid #040E27;
+    color: white!important;
+    text-align: center;
+    padding: 20px;
+}
+/*END OF CUSTOM CSS */
+
+
 /* line 44, ../../Arafath/CL/December/231. Travel-02/HTML/scss/theme-default.scss */
 h1 a,
 h2 a,

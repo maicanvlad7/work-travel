@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        $jobsData = DB::table('jobs')->get();
+        $jobsData = DB::table('jobs')->where('available_positions','>','0')->get();
 
         return view('welcome', compact('jobsData'));
     }

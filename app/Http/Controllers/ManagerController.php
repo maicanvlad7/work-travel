@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Application;
 use App\Helpers\GetGeneralStats;
 use App\Helpers\ChangeStatus;
+use App\Helpers\DecreasePos;
 
 class ManagerController extends Controller
 {
@@ -28,6 +29,9 @@ class ManagerController extends Controller
    public static function modifyInterview(bool $status, int $intId, int $userId) {
        //daca status este 1 il acceptam, daca este 0 il refuzam
 
+       $job = DB::table('interviews')->where([
+           'id' => $intId
+       ])->first();
 
        if($status) {
            //modificam status interviu in angajat
@@ -37,6 +41,8 @@ class ManagerController extends Controller
            ])->update([
                'status'=>'Angajat']
            );
+
+           DecreasePos::decrease($job->job_id);
 
            return back()->with(['success'=>'Angajare efectuata cu succes']);
        } else {
@@ -56,7 +62,8 @@ class ManagerController extends Controller
 
 
    public function addInterview(Request $request) {
-       
+
+
        //insert interview
        DB::table('interviews')->insert([
            'user_id' => $request->input('user_id'),
@@ -66,6 +73,7 @@ class ManagerController extends Controller
        ]);
 
        ChangeStatus::change('Accepted',$request->input('user_id'),$request->input('job_id'));
+
 
        return 1;
 

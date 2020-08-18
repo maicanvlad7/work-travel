@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="destination_banner_wrap overlay">
-        <div class="destination_text text-center">
-            <h3>{{$jobInfo->title}}</h3>
-            <p>{{$jobInfo->region}} -- {{$jobInfo->employer}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 destinationHeader">
+                <h3 class="text-lg-center">{{$jobInfo->title}}</h3>
+                <p>{{$jobInfo->region}} -- {{$jobInfo->employer}}</p>
+            </div>
         </div>
     </div>
 
