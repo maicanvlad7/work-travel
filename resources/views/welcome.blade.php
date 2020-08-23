@@ -80,16 +80,76 @@ where_togo_area_end  -->
 <div class="popular_places_area">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-md-12">
+                <form action="{{route('searchJob')}}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Cauta jobul mult visat</h4>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="searchQuery">
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-info">Cauta</button>
+                        </div>
+                        <div class="col-md-12">
+                            <a class="btn btn-primary mt-2" data-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample">
+                                Filtre
+                            </a>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body mt-3">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="minWage">Plata / ora (min)</label>
+                                                <input type="number" name="minWage" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="maxHrs">Ore de lucru (max/sapt)</label>
+                                                <input type="number" name="maxHrs" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="region">Regiune</label>
+                                                <select name="region" id="regionSelect" class="form-control">
+                                                    <option value="Hawaii">Hawaii</option>
+                                                    <option value="Hawaii">Chicago</option>
+                                                    <option value="Hawaii">Buzau</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 mt-5">
                 <div class="section_title text-center mb_70">
-                    <h3>Joburi Populare</h3>
+                    @if(isset($data->fromSearch))
+                        <h3>Rezultate Cautare</h3>
+                    @else
+                        <h3>Joburi Populare</h3>
+                    @endif
+
+
                     <p>Cele mai ravnite joburi la un click distanta de tine! Aplica acum si traieste visul American!</p>
                 </div>
             </div>
         </div>
         <div class="row">
-           @foreach($jobsData as $jd)
+           @foreach($data->jobsData as $jd)
                 <div class="col-lg-4 col-md-6">
+                    @if(count($data->jobsData)==0)
+                        <div class="alert alert-primary" role="alert" id="alert">
+                            <h2>Din pacate nu am gasit un job care sa se potriveasca cu criteriile tale.</h2>
+                        </div>
+                    @endif
                     <div class="single_place">
                         <div class="thumb">
                             <img src="@if(isset($jd->image_path)){{$jd->image_path}}@else{{asset('img/noimage.png')}}@endif" alt="">

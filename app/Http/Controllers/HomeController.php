@@ -31,6 +31,9 @@ class HomeController extends Controller
     {
         $jobsData = DB::table('jobs')->where('available_positions','>','0')->get();
 
-        return view('welcome', compact('jobsData'));
+        $data = (object)[];
+        $data->jobsData = $jobsData;
+
+        return view('welcome', compact('data'));
     }
 }
