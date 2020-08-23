@@ -18,6 +18,11 @@ $(window).on('scroll', function () {
 
 $(document).ready(function(){
 
+    $('#gen_start').on('click', function() {
+        $('#cvGenerator').css('visibility','visible');
+        $('.hideGenerate').css('visibility','hidden');
+    });
+
     $('.addInt').on('click',function(){
         $('#form-jid').val($(this).attr('data-jid'));
         $('#form-uid').val($(this).attr('data-uid'));

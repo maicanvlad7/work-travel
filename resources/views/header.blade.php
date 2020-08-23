@@ -52,7 +52,6 @@
                                                                          document.getElementById('logout-form').submit();">
                                                         {{ __('Logout') }}
                                                     </a>
-                                                    <a class="dropdown-item" href="{{route('show-pdf')}}">Vezi Pdf</a>
                                                     <a href="{{route('user_dashboard')}}" class="dropdown-item">Contul Meu</a>
 
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

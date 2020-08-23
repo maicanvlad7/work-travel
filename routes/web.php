@@ -14,27 +14,42 @@ use App\Http\Controllers\PaymentsController;
 |
 */
 
+//rute publice
 Route::get('/', 'HomeController@home')->name('welcome');
-
 Route::get('jobDetail/{id}','JobsController@getInfo')->name('getJobInfo');
 
-Route::get('/checker','PaymentsController@index')->name('checker');
-Route::post('/checker','PaymentsController@checker')->name('checkPayment');
+//rute plata
+Route::group(['prefix'=>'payments','middleware'=>'auth'], function() {
+    Route::get('/checker','PaymentsController@index')->name('checker');
+    Route::post('/checker','PaymentsController@checker')->name('checkPayment');
+});
 
-Route::get('/apply/{uid}/{jid}','ApplicationsController@store')->name('user_apply');
+//rute student
+Route::group(['prefix'=>'user','middleware'=>'auth'], function() {
+    Route::get('/interviews','UsersController@viewInterviews')->name('user_interviews');
+    Route::get('/documents','UsersController@viewDocuments')->name('user_documents');
+    Route::get('/cancel-application/{appId}','ApplicationsController@cancelApplication')->name('cancelApplication');
+    Route::get('/my-dashboard','UsersController@dashboard')->name('user_dashboard');
+    Route::get('/applications','UsersController@applications')->name('applications');
+    Route::get('/apply/{uid}/{jid}','ApplicationsController@store')->name('user_apply');
+    Route::post('/generateCv','UsersController@generateCV')->name('generate_cv');
+});
 
-Route::get('/my-dashboard','UsersController@dashboard')->middleware(['auth'])->name('user_dashboard');
-Route::get('/applications','UsersController@applications')->middleware(['auth'])->name('applications');
-Route::get('/cancel-application/{appId}','ApplicationsController@cancelApplication')->middleware(['auth'])->name('cancelApplication');
+//rute document
+Route::group(['prefix'=>'document','middleware'=>'auth'], function(){
+    Route::post('/submitDocument','UsersController@submitDocument')->name('document_submit');
+    Route::get('/viewDocument/{storage_path}','UsersController@viewDocument')->name('view_document');
+    Route::get('/deleteDocument/{id}','UsersController@deleteDocument')->name('delete_document');
+});
 
-Route::get('/simPdf','UsersController@showPdf')->name('show-pdf');
-
-Route::get('/manApps','ManagerController@displayApplications')->middleware('auth')->name('manApplications');
-Route::post('/addInterview','ManagerController@addInterview')->middleware('auth')->name('addInterview');
-
-Route::get('/interviews','UsersController@viewInterviews')->middleware('auth')->name('user_interviews');
-Route::get('/manInterviews','ManagerController@displayInterviews')->middleware('auth')->name('manInterviews');
-Route::get('/modifyInterview/{status}/{intId}/{userId}','ManagerController@modifyInterview')->middleware('auth')->name('modifyInt');
+//rute manager
+Route::group(['prefix'=>'manager','middleware'=>'auth'], function() {
+    Route::get('/manApps','ManagerController@displayApplications')->name('manApplications');
+    Route::post('/addInterview','ManagerController@addInterview')->name('addInterview');
+    Route::get('/manInterviews','ManagerController@displayInterviews')->name('manInterviews');
+    Route::get('/modifyInterview/{status}/{intId}/{userId}','ManagerController@modifyInterview')->name('modifyInt');
+    Route::get('/userProfile/{userId}','ManagerController@displayStudentProfile')->name('student_info');
+});
 
 Auth::routes();
 

@@ -90,6 +90,28 @@ class ManagerController extends Controller
 
     }
 
+    public function displayStudentProfile($userId) {
+        //datele despre student
+        $student = DB::table('users')
+            ->where([
+                'id' => $userId
+            ])->first();
+
+        //documentele studentului (momentan folosim FIRST pentru ca poate avea un singur document adica CV-ul)
+        $document = DB::table('documents')
+            ->where([
+                'user_id' => $userId
+            ])->get();
+
+        $data = GetGeneralStats::getGeneralInfo();
+        $data->document = $document;
+        $data->student = $student;
+
+
+        return view('manager.studentInfo', compact('data'));
+
+    }
+
     public function displayStudents() {
 
     }

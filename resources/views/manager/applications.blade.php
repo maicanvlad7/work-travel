@@ -32,7 +32,9 @@
                         <td>{{$app->interview_id == 0 ? 'Nesetat' : 'Programat' }}</td>
                         <td><button type="button" class="btn btn-primary addInt" data-toggle="modal" data-jid="{{$app->job->id}}" data-uid="{{$app->user->id}}" data-target="#exampleModal">
                                 Adauga Interviu
-                            </button></td>
+                            </button>
+                            <button class="btn btn-info"><a style="color: white!important;" href="{{route('student_info',['userId'=>$app->user->id])}}">Info Student</a></button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
