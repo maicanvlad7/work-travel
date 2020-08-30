@@ -40,4 +40,8 @@ class HomeController extends Controller
 
         return view('welcome', compact('data'));
     }
+
+    public function contact() {
+        return view('contact');
+    }
 }

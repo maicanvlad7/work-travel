@@ -7,7 +7,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
                                 <a href="{{route('welcome')}}">
-                                    <img src="{{asset('img/logo.png')}}" alt="">
+                                    <img src="{{asset('img/logo.png')}}" style="transform: scale(0.7);" alt="">
                                 </a>
                             </div>
                         </div>
@@ -17,8 +17,7 @@
                                     <ul id="navigation">
                                         <li><a class="active" href="{{route('welcome')}}">Acasa</a></li>
                                         <li><a href="">Despre Noi</a></li>
-                                        <li><a class="" href="">Destinatii</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{route('contact')}}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -26,7 +25,7 @@
                         <div class="col-xl-4 col-lg-4 d-none d-lg-block">
                             <div class="social_wrap d-flex align-items-center justify-content-end">
                                 <div class="number">
-                                    <p> <i class="fa fa-phone"></i> 10(256)-928 256</p>
+                                    <p> <i class="fa fa-phone"></i> 0731 728 398</p>
                                 </div>
                                 <div class="social_links d-none d-xl-block">
                                     <ul class="navbar-nav ml-auto">
@@ -63,11 +62,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="seach_icon">
-                            <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>

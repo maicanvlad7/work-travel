@@ -18,6 +18,7 @@ use App\Http\Controllers\PaymentsController;
 Route::get('/', 'HomeController@home')->name('welcome');
 Route::get('jobDetail/{id}','JobsController@getInfo')->name('getJobInfo');
 Route::post('/searchJob','JobsController@searchJob')->name('searchJob');
+Route::get('/contact','HomeController@contact')->name('contact');
 
 //rute plata
 Route::group(['prefix'=>'payments','middleware'=>'auth'], function() {
