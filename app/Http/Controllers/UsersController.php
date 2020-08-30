@@ -129,6 +129,10 @@ class UsersController extends Controller
 
     public function generateCv(Request $request) {
 
+        if($request->isMethod('GET')) {
+            return back();
+        }
+
         $request->validate([
             'firstName' => 'required|string',
             'lastName' => 'required|string',

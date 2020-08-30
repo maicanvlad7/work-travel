@@ -13,7 +13,7 @@ class CheckApplication{
         ])->get();
 
         foreach ($app as $au){
-            if ($au->status !== 'Rejected'){
+            if ($au->status !== 'Rejected' || $au->status !== 'Cancelled' ){
                 return 0;
             }
         }
