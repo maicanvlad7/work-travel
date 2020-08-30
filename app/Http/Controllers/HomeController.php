@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FavCheck;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -33,6 +35,8 @@ class HomeController extends Controller
 
         $data = (object)[];
         $data->jobsData = $jobsData;
+        $data->favList = FavCheck::getFavList(Auth::id());
+
 
         return view('welcome', compact('data'));
     }

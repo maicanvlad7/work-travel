@@ -34,6 +34,11 @@ Route::group(['prefix'=>'user','middleware'=>'auth'], function() {
     Route::get('/applications','UsersController@applications')->name('applications');
     Route::get('/apply/{uid}/{jid}','ApplicationsController@store')->name('user_apply');
     Route::post('/generateCv','UsersController@generateCV')->name('generate_cv');
+    Route::get('/tests','UsersController@viewTests')->name('user_tests');
+    //favourites
+    Route::get('/addFav/{jobId}','UsersController@addFav')->name('add_user_fav');
+    Route::get('/removeFav{jobId}', 'UsersController@removeFav')->name('remove_user_fav');
+    Route::get('/fav-list','UsersController@viewFavList')->name('fav_list');
 });
 
 //rute document
@@ -50,6 +55,8 @@ Route::group(['prefix'=>'manager','middleware'=>'auth'], function() {
     Route::get('/manInterviews','ManagerController@displayInterviews')->name('manInterviews');
     Route::get('/modifyInterview/{status}/{intId}/{userId}','ManagerController@modifyInterview')->name('modifyInt');
     Route::get('/userProfile/{userId}','ManagerController@displayStudentProfile')->name('student_info');
+    Route::post('/addTest','ManagerController@addTest')->name('addTest');
+    Route::get('/viewAddTest','ManagerController@viewAddTest')->name('viewAddTest');
 });
 
 Auth::routes();

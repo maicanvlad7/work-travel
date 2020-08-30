@@ -139,6 +139,11 @@ where_togo_area_end  -->
 
 
                     <p>Cele mai ravnite joburi la un click distanta de tine! Aplica acum si traieste visul American!</p>
+                    @if(session()->has('success'))
+                        <div class="alert alert-primary" role="alert" id="alert">
+                            <p>{{session()->get('success')}}</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -157,6 +162,9 @@ where_togo_area_end  -->
                         </div>
                         <div class="place_info">
                             <a href="destination_details.html"><h3>{{$jd->title}}</h3></a>
+                            @if(in_array($jd->id, $data->favList))
+                                <a href="{{route('remove_user_fav',['jobId'=>$jd->id])}}"><img src="{{asset('img/star.png')}}" alt=""></a>
+                            @endif
                             <p>{{$jd->region}}</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">

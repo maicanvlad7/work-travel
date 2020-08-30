@@ -55,6 +55,7 @@
     </div>
   </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{asset('js/vendor/modernizr-3.5.0.min.js')}}"></script>
     <script src="{{asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>

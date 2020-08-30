@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\In;
 use Illuminate\Support\Facades\Storage;
 use App\Document;
+use App\Helpers\FavCheck;
 
 class UsersController extends Controller
 {
@@ -44,7 +45,7 @@ class UsersController extends Controller
 
     }
 
-    public function applications(){
+    public function applications() {
 
 
         $applications = Application::with('job')->where([
@@ -144,6 +145,74 @@ class UsersController extends Controller
 
         return view('pdf.template', compact('data'));
 
+    }
+
+    public function viewTests() {
+        $tests = DB::table('tests')
+            ->where([
+                'user_id' => Auth::id()
+            ])->paginate(5);
+
+        $data = GetGeneralStats::getUserStats(Auth::user()->id);
+        $data->tests = $tests;
+
+        return view('user.tests', compact('data'));
+    }
+
+
+    public function addFav($jobId) {
+
+        $isAdded = FavCheck::checkJob($jobId);
+
+        if(!$isAdded) {
+            return back()->with('success','Acest job este deja in lista de favorite');
+        }
+
+        //daca nu este adaugat il adaugam
+        $insertion = DB::table('favourites')->insert([
+            'user_id' => Auth::id(),
+            'job_id' => $jobId
+        ]);
+
+        if($insertion) {
+            return back()->with('success','Job adaugat in lista de favorite cu succes');
+        } else {
+            return back()->with('success','Adaugarea jobului in lista de favorite a esuat');
+        }
+
+    }
+
+    public function removeFav($jobId) {
+        $delete = DB::table('favourites')->where([
+            'user_id' => Auth::id(),
+            'job_id' => $jobId
+        ])->delete();
+
+        if($delete) {
+            return back()->with('success','Job inlaturat cu succes din lista de favorite');
+        } else {
+            return back()->with('success','Te rugam incearca mai tarziu');
+        }
+    }
+
+    public function viewFavList() {
+        $favLocations = FavCheck::getFavList(Auth::id());
+
+        $data = GetGeneralStats::getUserStats(Auth::user()->id);
+        $data->jobInfo = [];
+        $data->favList = FavCheck::getFavList(Auth::id());
+
+        foreach($favLocations as $fav) {
+            array_push($data->jobInfo,DB::table('jobs')->where([
+                'id' => $fav,
+            ])->get());
+        }
+
+
+
+
+
+        return view('user.favs',compact('data'));
 
     }
 

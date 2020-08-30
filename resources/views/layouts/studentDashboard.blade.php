@@ -73,9 +73,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('user_tests')}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 12 2 3 12 12 0 7 2 20"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                         Teste
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('fav_list')}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="13 13 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 12 2 3 12 12 0 7 2 20"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        Joburi Favorite
                     </a>
                 </li>
             </ul>
@@ -107,7 +113,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Teste Aprobate</h5>
+                        <h5 class="card-title">Teste Aptitudini</h5>
                         <p class="card-text">Numarul de teste pe care le-ai trecut.</p>
                         <h3 class="card-title">{{$data->nrTeste}}</h3>
                     </div>

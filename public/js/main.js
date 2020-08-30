@@ -28,6 +28,10 @@ $(document).ready(function(){
         $('#form-uid').val($(this).attr('data-uid'));
     });
 
+    $('#favRemover').on('click', function(){
+       let jobId = $(this).attr('data-jobId');
+    });
+
     $('#saveInt').click(function(e){
         e.preventDefault();
 

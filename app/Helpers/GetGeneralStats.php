@@ -17,8 +17,14 @@ class GetGeneralStats{
                 'user_id' => $userId,
             ])->count();
 
-        $stats->nrInterviuri = '0';
-        $stats->nrTeste = '0';
+        $stats->nrInterviuri = DB::table('interviews')
+            ->where('status','=','Angajat')
+            ->count();
+
+
+        $stats->nrTeste = DB::table('tests')
+            ->where('user_id','=',$userId)
+            ->count();
 
         return $stats;
     }

@@ -44,8 +44,11 @@ class JobsController extends Controller
             'searchQuery' => 'required|string'
         ]);
 
-        $query = "SELECT * FROM jobs WHERE available_positions > 0 AND title LIKE '%".$request->input('searchQuery')."%'";
+        $query = "SELECT * FROM jobs WHERE available_positions > 0";
 
+        if($request->has('searchQuery') && !empty($request->input('searchQuery'))) {
+            $query = $query . ' AND title LIKE \'%'. $request->input('searchQuery').'%\'';
+        }
         //construim query-ul
         //minWage
         if($request->has('minWage') && !empty($request->input('minWage'))) {

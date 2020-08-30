@@ -22,7 +22,7 @@ class ApplicationsController extends Controller
         if ( CheckApplication::check($userId) ){
 
             Application::create($data);
-            return back()->with(['success'=>'da']);
+            return back()->with(['success'=>'Ai aplicat cu succes! Un interviu va fi setat in curand!']);
 
         }else{
             return back()->withErrors(['validare'=>'Ati aplicat deja la un alt loc de munca.']);

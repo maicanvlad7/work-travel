@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CheckRole;
 use App\Interview;
+use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -113,7 +115,43 @@ class ManagerController extends Controller
     }
 
     public function displayStudents() {
-//va urma
+        //va urma
+    }
+
+    public function addTest(Request $request) {
+
+            $request->validate([
+                'user_id' => 'required',
+                'title' => 'required|string',
+                'author' => 'required|string',
+                'status' => 'required|string',
+                'date' => 'required'
+            ]);
+
+            $test = DB::table('tests')->insert([
+                'user_id' => $request->input('user_id'),
+                'title' => $request->input('title'),
+                'author' => $request->input('author'),
+                'status' => $request->input('status'),
+                'date' => $request->input('date')
+            ]);
+
+            if ($test) {
+                return back()->with('success','Test adaugat cu succes');
+            } else {
+                return back()->with('success','Adaugarea testului a esuat');
+            }
+
+    }
+
+    public function viewAddTest() {
+
+        $students = User::getAllStudents();
+
+        $data = GetGeneralStats::getGeneralInfo();
+        $data->students = $students;
+
+        return view('manager.addTest', compact('data'));
     }
 
 

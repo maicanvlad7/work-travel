@@ -19,7 +19,8 @@ class CreateTestsTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->string('author');
-            $table->integer('status');
+            $table->string('status');
+            $table->date('date');
         });
     }
 
