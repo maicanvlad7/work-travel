@@ -21,7 +21,7 @@ Route::post('/searchJob','JobsController@searchJob')->name('searchJob');
 Route::get('/contact','HomeController@contact')->name('contact');
 
 //rute plata
-Route::group(['prefix'=>'payments','middleware'=>'auth'], function() {
+Route::group(['prefix'=>'payments'], function() {
     Route::get('/checker','PaymentsController@index')->name('checker');
     Route::post('/checker','PaymentsController@checker')->name('checkPayment');
 });
