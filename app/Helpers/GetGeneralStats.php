@@ -18,7 +18,9 @@ class GetGeneralStats{
             ])->count();
 
         $stats->nrInterviuri = DB::table('interviews')
-            ->where('status','=','Angajat')
+            ->where([
+                'user_id' => $userId
+            ])
             ->count();
 
 
